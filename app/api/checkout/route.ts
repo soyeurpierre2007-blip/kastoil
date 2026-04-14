@@ -9,7 +9,10 @@ export async function POST() {
       return NextResponse.json({ error: "Configuration Stripe manquante" }, { status: 500 });
     }
 
-    const stripe = new Stripe(secretKey);
+    const stripe = new Stripe(secretKey, {
+      maxNetworkRetries: 0,
+      timeout: 8000,
+    });
     const origin = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kastoil.vercel.app";
 
     console.log("STRIPE_SECRET_KEY présente :", !!process.env.STRIPE_SECRET_KEY);
