@@ -13,7 +13,7 @@ export async function POST() {
 
     const stripe = new Stripe(secretKey, {
       maxNetworkRetries: 0,
-      timeout: 8000,
+      httpClient: Stripe.createFetchHttpClient(),
     });
     const origin = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kastoil.vercel.app";
 
