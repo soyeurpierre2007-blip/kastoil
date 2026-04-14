@@ -18,8 +18,9 @@ export default function OrderSection() {
 
       window.location.href = data.url;
     } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
       console.error(err);
-      alert("Une erreur est survenue. Veuillez réessayer.");
+      alert("Erreur : " + msg);
     } finally {
       setLoading(false);
     }
