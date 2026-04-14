@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!);
-
 export async function POST() {
   try {
-    const origin = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+    const secretKey = process.env.STRIPE_SECRET_KEY;
+    if (!secretKey) {
+      console.error("STRIPE_SECRET_KEY manquante");
+      return NextResponse.json({ error: "Configuration Stripe manquante" }, { status: 500 });
+    }
+
+    const stripe = new Stripe(secretKey);
+    const origin = process.env.NEXT_PUBLIC_SITE_URL ?? "https://kastoil.vercel.app";
 
     console.log("STRIPE_SECRET_KEY présente :", !!process.env.STRIPE_SECRET_KEY);
     console.log("NEXT_PUBLIC_SITE_URL :", origin);

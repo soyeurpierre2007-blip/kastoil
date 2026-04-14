@@ -13,7 +13,9 @@
       "Bash(sips -s format png /tmp/worldmap_ref.avif --out /tmp/worldmap_ref.png)",
       "Bash(npx tsc:*)",
       "Bash(npm list:*)",
-      "Bash(gh repo:*)"
+      "Bash(gh repo:*)",
+      "Bash(curl:*)",
+      "Bash(find \"/Users/pierre/Desktop\" -name \"*16.29*\" -exec cp {} /tmp/vercel_env.png \\\\;)"
     ]
   }
 }
